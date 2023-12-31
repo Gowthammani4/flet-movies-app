@@ -3,8 +3,11 @@ import flet as ft
 from flet_core import page
 from flet_core.types import MainAxisAlignmentString
 import requests
+import webbrowser
 
-    
+def open_youtube(ylink):
+    url=ylink
+    webbrowser.open(url)
     
 def main(page: ft.Page):
     page.scroll = "always"
@@ -16,7 +19,7 @@ def main(page: ft.Page):
         page.add(
         ft.Card(
             content=ft.Container(
-                content=ft.Row([ft.Container(width=100),ft.Container(content=ft.Image(
+                content=ft.Row([ft.Container(content=ft.Image(
                             src=movie_dict[i]["poster"],
                             width=100,
                             height=150,
@@ -34,7 +37,7 @@ def main(page: ft.Page):
                             ),
                         ),
                         ft.Row(
-                            [ft.TextButton("Buy tickets"), ft.TextButton("Reviews")],
+                            [ft.TextButton("Play Trailer",on_click=open_youtube(movie_dict[i]["trailerLink"])), ft.TextButton("Reviews")],
                             alignment=ft.MainAxisAlignment.END,
                         ),
                     ],alignment=ft.CrossAxisAlignment.CENTER,

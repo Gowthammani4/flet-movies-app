@@ -5,15 +5,16 @@ from flet_core.types import MainAxisAlignmentString
 import requests
 import webbrowser
 
-def open_youtube(ylink):
-    url=ylink
-    webbrowser.open(url)
     
 def main(page: ft.Page):
+    
     page.scroll = "always"
     response = requests.get('https://movie-review-3gg6.onrender.com/api/movies')
     movie_dict=response.json()    
-    page.update()
+    
+    def open_youtube(ylink):
+        url=ylink
+        webbrowser.open(url)
     
     for i in range(0,len(movie_dict)):
         page.add(
@@ -49,7 +50,6 @@ def main(page: ft.Page):
 
         )
     )
-    page.update()
     
 
 ft.app(target=main)
